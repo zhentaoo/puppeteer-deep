@@ -22,7 +22,7 @@ Puppeteer是一个node包，他提供了用来控制Chrome的高级API，有点�
 如果在page go完成之后马上对page进行dom操作只能抓到loading（如下图），所以用timeout做了简单点处理
 ![](./doc/pp.png)
 
-最终爬取效果如下，PDF效果就不做过多整理了，老师
+最终爬取效果如下，PDF的尺寸、预览效果、首页重复就不做过多整理，作者不开心就尴尬了....
 ![](./doc/es6.png)
 
 ![](./doc/es6-pdf.png)
