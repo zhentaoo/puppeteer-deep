@@ -16,11 +16,8 @@ Puppeteer是一个node包，他提供了用来控制Chrome的高级API，有点�
 7. 捕获站点的时间线跟踪，以帮助诊断性能问题。
 
 ## Scene
-1. crawler: 爬取阮老师的es6
-2. performance: 性能分析
-
-#### Crawler（具体流程可以看代码，下面提几个关键点）
+#### Crawler（爬取阮老师的es6, 具体流程可以看代码，下面提几个关键点）
 1. `npm run es6`: 执行之后，会在es6-pdf下生成阮老师的es6文章的pdf版本
 2. 如果在page go完成之后马上对page进行dom操作只能抓到loading（如下图），所以用timeout做了简单点处理
 
-#### Performance (ing.........)
+#### Performance (性能分析, ing.........)
