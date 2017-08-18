@@ -1,10 +1,11 @@
 {
-  "name": "puppeteer-demo",
+  "name": "puppeteer-deep",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "es6": "node es6-crawl.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
