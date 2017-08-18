@@ -19,12 +19,13 @@ Puppeteer是一个node包，他提供了用来控制Chrome的高级API，有点�
 #### Crawler（爬取阮老师的es6, 具体流程可以看代码，下面提几个关键点）
 `npm run es6`: 执行之后，会在es6-pdf下生成阮老师的es6文章的pdf版本
 
-如果在page go完成之后马上对page进行dom操作只能抓到loading（如下图），所以用timeout做了简单点处理
+##### 如果在page go完成之后马上对page进行dom操作只能抓到loading（如下图），所以用timeout做了简单点处理
 ![](./doc/pp.png)
 
-最终爬取效果如下，PDF的尺寸、预览效果、首页重复就不做过多整理，作者不开心就尴尬了....
+##### 最终爬取效果如下，PDF的尺寸、预览效果、首页重复就不做过多整理，作者不开心就尴尬了....
 ![](./doc/es6.png)
 
+##### 预览效果如下,如果想要自己处理，可以设置一下chrome尺寸，打印页数
 ![](./doc/es6-pdf.png)
 
 
