@@ -1,12 +1,12 @@
 ## Puppeteer-Deep (Node: v8.4.0)
 
-### API
+#### API
 https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions
 
-### Introduce
+#### Introduce
 Puppeteer是一个node包，他提供了用来控制Chrome的高级API，有点类似于PhantomJS。不同于Phantom，Puppeteer是Chrome官方团队进行维护的，前景更好。在这个repo中，主要先介绍Puppeteer，具体的应用场景不断发掘
 
-### Puppeteer Key Feature
+#### Puppeteer Key Feature
 1. 用网页生成的PDF文件
 2. 爬取 SPA应用 并生成预渲染内容（即“SSR”）
 3. 从网站抓取内容
@@ -19,8 +19,8 @@ Puppeteer是一个node包，他提供了用来控制Chrome的高级API，有点�
 1. crawler: 爬取阮老师的es6
 2. performance: 性能分析
 
-### Crawler（具体流程可以看代码，下面提几个关键点）
+#### Crawler（具体流程可以看代码，下面提几个关键点）
 1. `npm run es6`: 执行之后，会在es6-pdf下生成阮老师的es6文章的pdf版本
 2. 如果在page go完成之后马上对page进行dom操作只能抓到loading（如下图），所以用timeout做了简单点处理
 
-### Performance (ing.........)
+#### Performance (ing.........)
