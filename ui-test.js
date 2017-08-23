@@ -1,6 +1,6 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer')
 
-let timeout = function(delay) {
+var timeout = function(delay) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             try {
@@ -12,57 +12,84 @@ let timeout = function(delay) {
     })
 }
 
+// 以下拿掘金开刀,贡献私人测试账号
 // puppeteer.launch().then(async browser => {
 puppeteer.launch({headless: false}).then(async browser => {
-    // let page = await browser.newPage();
-    // page.setViewport({width: 1200, height: 600})
-    // await page.goto('http://www.zhentaoo.com');
+    var page = await browser.newPage()
+    page.setViewport({width: 1200, height: 600})
 
-    let page2 = await browser.newPage()
+    /** 1. 到sf获取最新的前端文章 **/
+    try {
+        await page.goto('https://segmentfault.com/news/frontend')
+        await timeout(1000)
 
-    page2.setViewport({width: 1200, height: 600})
+        var SfFeArticleList = await page.evaluate(() => {
+            var list = [...document.querySelectorAll('.news__list .news__item-title a')]
 
-    await page2.goto('https://github.com/zt-npm');
+            return list.map(el => {
+                return {href: el.href.trim(), title: el.innerText}
+            })
+        })
 
-    await timeout(2000)
+        console.log('SfFeArticleList:', SfFeArticleList);
 
-    await page2.evaluate(async () => {
-      let timeout = function(delay) {
-          return new Promise((resolve, reject) => {
-              setTimeout(() => {
-                  try {
-                      resolve(1)
-                  } catch (e) {
-                      reject(0)
-                  }
-              }, delay)
-          })
-      }
+        await page.screenshot({path: './sf-juejin/sf.png', type: 'png'});
+        await timeout(1000)
+    } catch (e) {
+        console.log('sf err:', e);
+    }
+
+    /** 登录juejin **/
+    try {
+        await page.goto('https://juejin.im')
+        await timeout(1000)
+
+        var login = await page.$('.login')
+        console.log('login:', login);
+        await login.click()
+
+        var loginPhoneOrEmail = await page.$('[name=loginPhoneOrEmail]')
+        console.log('loginPhoneOrEmail:', loginPhoneOrEmail);
+        await loginPhoneOrEmail.click()
+        await page.type('18516697699@163.com', {delay: 50})
+
+        var password = await page.$('[placeholder=请输入密码]')
+        console.log('password:', password);
+        await password.click()
+        await page.type('123456', {delay: 50})
+
+        var authLogin = await page.$('.panel .btn')
+        console.log('authLogin:', authLogin);
+        await authLogin.click()
+
+    } catch (e) {}
 
 
-      // login
-      var login = await document.querySelector('.header-navlink > a')
+    /** 随机推荐一篇从sf拿来的文章到掘金 **/
+    try {
+        await timeout(1000)
+        var seed = Math.floor(Math.random() * 30)
+        var theArtile = SfFeArticleList[seed]
 
-      console.log('login:', login);
+        var add = await page.$('.main-nav .ion-android-add')
+        await add.click()
+        await timeout(1000)
 
-      login.click()
+        var shareUrl = await page.$('.entry-form-input .url-input')
+        await shareUrl.click()
+        await page.type(theArtile.href, {delay: 50})
 
-      await timeout(1000)
+        await page.press('Tab')
+        await page.type(theArtile.title)
 
-      var signName = document.querySelector('.form-control, .input-block')
-      console.log('signName:', signName);
+        await page.press('Tab')
+        await page.type(theArtile.title)
 
-      // var btn = document.querySelector('.TableObject-item > .btn,.btn-primary')
-      // console.log(btn);
-      // btn.click()
-    })
+    } catch (e) {
+        await page.screenshot({path: './sf-juejin/err.png', type: 'png'});
+    }
 
-    // await page.goto('https://melody-test.faas.elenet.me/app/chain-shop/dashboard');
-    // await timeout(2000);
-
-    // await page.pdf({path: './data/melody.png'});
-
-    // page.close()
-
-    // browser.close();
-});
+    await page.screenshot({path: './sf-juejin/done.png', type: 'png'});
+    // await page.close()
+    // browser.close()
+})

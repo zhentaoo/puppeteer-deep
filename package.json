@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node zhentaoo.js",
+    "zhentaoo": "node zhentaoo.js",
+    "juejin": "node ui-test.js",
     "es6": "rm -rf ./es6-pdf/* && node es6-crawl.js",
-    "test": "node ui-test.js"
+    "test": "npm run juejin"
   },
   "author": "",
   "license": "ISC",
