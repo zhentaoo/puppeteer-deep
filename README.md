@@ -16,13 +16,11 @@ Puppeteer是一个node包，他提供了用来控制Chrome的高级API，有点�
 7. 捕获站点的时间线跟踪，以帮助诊断性能问题。
 
 ## Scene
+1. UI-Test: UI自动化测试--拿掘金开刀，把sf的文章自动搬运到jj，这里为了方便录制使用headless false模式，下面是一张完整效果的动图，20M显示比较慢，请耐心等下
+![](./doc/sf-jj.gif)
 
-1. Crawler（爬取阮老师的es6, 具体流程可以看代码，下面提几个关键点）
+2. Crawler（爬取阮老师的es6, 具体流程可以看代码，下面提几个关键点）
 `npm run es6`: 执行之后，会在es6-pdf下生成阮老师的es6文章的pdf版本
 ![](./doc/es6.png)
-![](./doc/es6-pdf.png)
-
-2. UI-Test UI自动化测试--拿掘金开刀，把sf的文章自动搬运到jj，这里为了方便录制使用headless false模式，下面是一张完整效果的动图，20M显示比较慢，请耐心等下
-![](./doc/sf-jj.gif)
 
 3. Performance (性能分析, 待完成....)
