@@ -4,7 +4,8 @@ const puppeteer = require('puppeteer');
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto('http://www.zhentaoo.com', {waitUntil: 'networkidle'});
-    await page.pdf({path: './data/zhentaoo.pdf', format: 'A4'});
+
+    await page.screenshot({path: './data/zhentaoo.png', type: 'png'});
 
     browser.close();
 })();

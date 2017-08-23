@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "es6": "rm -rf ./es6-pdf/* && node es6-crawl.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ui-test.js"
   },
   "author": "",
   "license": "ISC",
