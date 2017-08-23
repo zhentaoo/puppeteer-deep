@@ -34,13 +34,13 @@ puppeteer.launch({headless: false}).then(async browser => {
         console.log('SfFeArticleList:', SfFeArticleList);
 
         await page.screenshot({path: './sf-juejin/sf.png', type: 'png'});
-        await timeout(1000)
     } catch (e) {
         console.log('sf err:', e);
     }
 
     /** 登录juejin **/
     try {
+        await timeout(1000)
         await page.goto('https://juejin.im')
         await timeout(1000)
 
@@ -51,12 +51,12 @@ puppeteer.launch({headless: false}).then(async browser => {
         var loginPhoneOrEmail = await page.$('[name=loginPhoneOrEmail]')
         console.log('loginPhoneOrEmail:', loginPhoneOrEmail);
         await loginPhoneOrEmail.click()
-        await page.type('18516697699@163.com', {delay: 50})
+        await page.type('18516697699@163.com', {delay: 20})
 
         var password = await page.$('[placeholder=请输入密码]')
         console.log('password:', password);
         await password.click()
-        await page.type('123456', {delay: 50})
+        await page.type('123456', {delay: 20})
 
         var authLogin = await page.$('.panel .btn')
         console.log('authLogin:', authLogin);
@@ -77,13 +77,24 @@ puppeteer.launch({headless: false}).then(async browser => {
 
         var shareUrl = await page.$('.entry-form-input .url-input')
         await shareUrl.click()
-        await page.type(theArtile.href, {delay: 50})
+        await page.type(theArtile.href, {delay: 20})
 
         await page.press('Tab')
-        await page.type(theArtile.title)
+        await page.type(theArtile.title, {delay: 20})
 
         await page.press('Tab')
-        await page.type(theArtile.title)
+        await page.type(theArtile.title, {delay: 20})
+
+        await page.evaluate(() => {
+          let li = [...document.querySelectorAll('.category-list-box .category-list .item')]
+          li.forEach(el => {
+            if (el.innerText == '前端')
+              el.click()
+          })
+        })
+
+        var submitBtn = await page.$('.submit-btn')
+        await submitBtn.click()
 
     } catch (e) {
         await page.screenshot({path: './sf-juejin/err.png', type: 'png'});
