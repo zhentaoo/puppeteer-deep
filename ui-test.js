@@ -45,7 +45,6 @@ puppeteer.launch({headless: false}).then(async browser => {
         await timeout(1000)
 
         var login = await page.$('.login')
-        console.log('login:', login);
         await login.click()
 
         var loginPhoneOrEmail = await page.$('[name=loginPhoneOrEmail]')
@@ -67,13 +66,13 @@ puppeteer.launch({headless: false}).then(async browser => {
 
     /** 随机推荐一篇从sf拿来的文章到掘金 **/
     try {
-        await timeout(1000)
+        await timeout(2500)
         var seed = Math.floor(Math.random() * 30)
         var theArtile = SfFeArticleList[seed]
 
         var add = await page.$('.main-nav .ion-android-add')
         await add.click()
-        await timeout(1000)
+        await timeout(2500)
 
         var shareUrl = await page.$('.entry-form-input .url-input')
         await shareUrl.click()
