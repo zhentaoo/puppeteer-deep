@@ -1,4 +1,4 @@
-## 首先介绍Puppeteer**
+## 首先介绍Puppeteer
 - Puppeteer是一个node库，他提供了一组用来操纵Chrome的API，理论上使用它可以做任何Chrome可以做的事
 - 有点类似于PhantomJS，但Puppeteer由Chrome官方团队进行维护，前景更好
 - Puppeteer的应用场景会非常多，就爬虫领域来说，远比一般的爬虫工具功能更丰富，性能分析、自动化测试也不在话下，今天先探讨爬虫相关
