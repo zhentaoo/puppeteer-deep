@@ -7,10 +7,11 @@
 ## 项目Repo && 运行
 1. git clone https://github.com/zhentaoo/puppeteer-deep
 2. npm install (puppeteer在win下100+M、mac下70+M，请耐心等候)
-3. npm test
+3. npm test (推荐segmentfault的热门文章到掘金)
+4. npm run es6 (爬取阮一峰老师的《ES6标准入门》)
 
 ## 简要提下Puppeteer的应用场景
-1. 屏幕快照，打印PDF
+1. 屏幕快照，打印PDF，本项目用它爬取了阮一峰老师的《ES6标准入门》并打印了PDF
 2. 高级爬虫（有别于传统爬虫.使用Puppeteer可以拿到渲染后的效果，传统爬虫相当于只能拿到http response）
 3. UI自动化测试（使用Puppeteer可以模拟用户操作）
 4. 页面性能分析
@@ -21,7 +22,7 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 
 <img src="https://raw.githubusercontent.com/zhentaoo/puppeteer-deep/master/doc/sf-jj.gif" width = "700" height = "440" align=center />
 
-## 下面就来介绍具体流程
+## 下面介绍 ‘推荐segmentfault的热门文章到掘金’ 的具体流程
 
 ### 1. 爬取 segmentfault 前30篇热门文章
   - 跳转到https://segmentfault.com/news/frontend
