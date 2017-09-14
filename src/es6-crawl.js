@@ -28,7 +28,7 @@ puppeteer.launch().then(async browser => {
       });
     });
 
-    await page.pdf({path: `./es6-pdf/${aTags[0].name}.pdf`});
+    await page.pdf({path: `./data/es6-pdf/${aTags[0].name}.pdf`});
     page.close()
 
     // 这里也可以使用promise all，但cpu可能吃紧，谨慎操作
@@ -41,7 +41,7 @@ puppeteer.launch().then(async browser => {
 
       await timeout(2000);
 
-      await page.pdf({path: `./es6-pdf/${a.name}.pdf`});
+      await page.pdf({path: `./data/es6-pdf/${a.name}.pdf`});
 
       page.close();
     }

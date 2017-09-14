@@ -33,7 +33,7 @@ puppeteer.launch({headless: false}).then(async browser => {
 
         console.log('SfFeArticleList:', SfFeArticleList);
 
-        await page.screenshot({path: './sf-juejin/sf.png', type: 'png'});
+        await page.screenshot({path: './data/sf-juejin/sf.png', type: 'png'});
     } catch (e) {
         console.log('sf err:', e);
     }
@@ -55,7 +55,7 @@ puppeteer.launch({headless: false}).then(async browser => {
         var password = await page.$('[placeholder=请输入密码]')
         console.log('password:', password);
         await password.click()
-        await page.type('123456', {delay: 20})
+        await page.type('aaa123456', {delay: 20})
 
         var authLogin = await page.$('.panel .btn')
         console.log('authLogin:', authLogin);
@@ -96,10 +96,10 @@ puppeteer.launch({headless: false}).then(async browser => {
         await submitBtn.click()
 
     } catch (e) {
-        await page.screenshot({path: './sf-juejin/err.png', type: 'png'});
+        await page.screenshot({path: './data/sf-juejin/err.png', type: 'png'});
     }
 
-    await page.screenshot({path: './sf-juejin/done.png', type: 'png'});
+    await page.screenshot({path: './data/sf-juejin/done.png', type: 'png'});
     // await page.close()
     // browser.close()
 })

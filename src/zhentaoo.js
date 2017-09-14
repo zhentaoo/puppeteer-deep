@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer');
     const page = await browser.newPage();
     await page.goto('http://www.zhentaoo.com', {waitUntil: 'networkidle'});
 
-    await page.screenshot({path: './zhentaoo/zhentaoo.png', type: 'png'});
+    await page.screenshot({path: './data/zhentaoo/zhentaoo.png', type: 'png'});
 
     // browser.close();
 })();

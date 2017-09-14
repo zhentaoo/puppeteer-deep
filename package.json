@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node zhentaoo.js",
-    "zhentaoo": "node zhentaoo.js",
-    "juejin": "node ui-test.js",
-    "es6": "rm -rf ./es6-pdf/* && node es6-crawl.js",
-    "test": "npm run juejin"
+    "start": "node src/zhentaoo.js",
+    "test": "npm run juejin",
+    "sf-juejin": "node src/sf-juejin.js",
+    "zhentaoo": "node src/zhentaoo.js",
+    "es6": "rm -rf ./es6-pdf/* && node src/es6-crawl.js",
+    "analyze": "node src/analyze.js"
   },
   "author": "",
   "license": "ISC",
