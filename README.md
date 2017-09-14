@@ -1,29 +1,28 @@
-# 首先介绍Puppeteer
+## 首先介绍Puppeteer
 - Puppeteer是一个node库，他提供了一组用来操纵Chrome的API，理论上使用它可以做任何Chrome可以做的事
 - 有点类似于PhantomJS，但Puppeteer由Chrome官方团队进行维护，前景更好
 - Puppeteer的应用场景会非常多，就爬虫领域来说，远比一般的爬虫工具功能更丰富，性能分析、自动化测试也不在话下，今天先探讨爬虫相关
 - [Puppeteer官方文档请猛戳这里](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions)
 
-# 简要提下Puppeteer的应用场景
+## 简要提下Puppeteer的应用场景
 1. 高级爬虫（有别于传统爬虫.使用Puppeteer可以拿到渲染后的效果。而传统爬虫相当于只能拿到http response，对字符串进行解析）
 2. UI自动化测试（使用Puppeteer可以模拟用户操作，模拟表单填写）
-3. 页面性能分析
+3. 页面性能分析 (使用chrome的timeline，等等)
 
 
-# 项目Repo && 运行
+## 项目Repo && 运行
 1. git clone https://github.com/zhentaoo/puppeteer-deep
 2. npm install (puppeteer在win下100+M、mac下70+M，请耐心等候)
 3. npm test (推荐segmentfault的热门文章到掘金)
 4. npm run es6 (爬取了阮一峰老师的《ES6标准入门》并打印PDF)
 
-
-# 废话不多说，直接上动图/视频看效果
+## 废话不多说，直接上动图/视频看效果
 GIF图片比较大，如果不能加载成功，也可以到微博看下录制的视频
 http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 
 <img src="https://raw.githubusercontent.com/zhentaoo/puppeteer-deep/master/doc/sf-jj.gif" width = "700" height = "440" align=center />
 
-# 一、 下面介绍 ‘推荐segmentfault的热门文章到掘金’ 的具体流程
+## 一、 下面介绍 ‘推荐segmentfault的热门文章到掘金’ 的具体流程
 
 ### 1. 爬取 segmentfault 前30篇热门文章
   - 跳转到https://segmentfault.com/news/frontend
@@ -100,9 +99,9 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
       await submitBtn.click()
 ```
 
-# 二、下面介绍爬取阮一峰《ES6标准入门》，并打印成PDF
+## 二、下面介绍爬取阮一峰《ES6标准入门》，并打印成PDF
 
-### 1. 运行Puppeteer
+### 1. 运行Puppeteer，使用launch
 ```js
   puppeteer.launch().then(async browser => {
     ......
@@ -111,13 +110,13 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
   })
 ```
 
-### 2. 跳转至 [阮一峰老师的ES6博客](http://es6.ruanyifeng.com/#README)
+### 2. 跳转至 [阮一峰老师的ES6博客](http://es6.ruanyifeng.com/#README)，使用goto
 ```js
   let page = await browser.newPage();
   await page.goto('http://es6.ruanyifeng.com/#README');
 ```
 
-### 3. 分析博客左侧导航栏的dom结构，并拿到所有链接的href、title信息
+### 3. 分析博客左侧导航栏的dom结构，<ol><li><a></a></li></ol>，并拿到所有链接的href、title信息
 ```js
   let as = [...document.querySelectorAll('ol li a')];
   return as.map((a) =>{
@@ -128,19 +127,12 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
   });
 ```
 
-### 4. 使用Puppeteer打印当前页面的PDF
+### 4. 使用Puppeteer打印当前页面的PDF，使用pdf
 ```js
   await page.pdf({path: `./es6-pdf/${aTags[0].name}.pdf`});
 ```
 
-### 5. 完整代码在: https://github.com/zhentaoo/puppeteer-deep
-
-### 6. 项目运行
-  - git clone https://github.com/zhentaoo/puppeteer-deep
-  - npm install (puppeteer在win下100+M、mac下70+M，请耐心等候)
-  - npm run es6
-
-# 结语
+## 结语
 1. 为了效果展示，这里使用的headless: false模式，实际使用时可以同时开n个page，模拟操作，大家可以尝试改改，也可以给我提PR
 2. 目前已经带领大家，使用Puppeteer完成爬虫 和 UI自动化测试，接下来可能会出第三篇，应该会是关于前端性能分析
 3. 其实Puppeteer的应用场景远不止这些，大家也可以使用它在各自的领域大放异彩！！！
