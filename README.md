@@ -116,7 +116,7 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
   await page.goto('http://es6.ruanyifeng.com/#README');
 ```
 
-### 3. 分析博客左侧导航栏的dom结构，<ol><li><a></a></li></ol>，并拿到所有链接的href、title信息
+### 3. 分析博客左侧导航栏的dom结构，并拿到所有链接的href、title信息
 ```js
   let as = [...document.querySelectorAll('ol li a')];
   return as.map((a) =>{
