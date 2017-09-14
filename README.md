@@ -14,6 +14,7 @@
 2. npm install (puppeteer在win下100+M、mac下70+M，请耐心等候)
 3. npm run sf-juejin (推荐segmentfault的热门文章到掘金)
 4. npm run es6 (爬取了阮一峰老师的《ES6标准入门》并打印PDF)
+5. npm run zhentaoo (打印 www.zhentaoo.com 首页的图片)
 
 ## 废话不多说，先上动图/视频看效果
 GIF图片比较大，如果不能加载成功，也可以到微博看下录制的视频
