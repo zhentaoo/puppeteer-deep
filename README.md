@@ -23,7 +23,7 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 
 ## 一、 UI自动化测试--自动推荐segmentfault的热门文章到掘金
 
-### 1. 爬取 segmentfault 前30篇热门文章
+#### 1. 爬取 segmentfault 前30篇热门文章
   - 跳转到https://segmentfault.com/news/frontend
   - 接着分析SF首页的Dom结构，爬取每篇文章的链接
   - 然后取出每篇文章最重要的 href，title 等信息
@@ -41,7 +41,7 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
       await page.screenshot({path: './sf-juejin/sf.png', type: 'png'});
   ```
 
-### 2. 登录掘金 (这里我事先注册了个测试账号,大家可以替换成自己的)
+#### 2. 登录掘金 (这里我事先注册了个测试账号,大家可以替换成自己的)
 - 跳转到掘金，模拟点击登录按钮
 - 接着，会弹出一个的登录dialog，模拟输入用户名密码
 - 模拟点击登录，稍等....嗯...掘金应该把cookie写好了....
@@ -63,7 +63,7 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
       var authLogin = await page.$('.panel .btn')
       await authLogin.click()
 ```
-### 3.推荐文章（使用第一步从SF爬取的文章信息）
+#### 3.推荐文章（使用第一步从SF爬取的文章信息）
 - 模拟点击推荐文章 按钮 “＋”
 - 这时从SF拿到的文章信息就派上用场了，随机取出一篇: Math.floor(Math.random() * 30)
 - 模拟填写推荐表单，点击发布
@@ -100,7 +100,7 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 
 ## 二、高级爬虫--爬取《ES6标准入门》并打印成PDF
 
-### 1. 运行Puppeteer，使用launch
+#### 1. 运行Puppeteer，使用launch
 ```js
   puppeteer.launch().then(async browser => {
     ......
@@ -109,13 +109,13 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
   })
 ```
 
-### 2. 跳转至 [阮一峰老师的ES6博客](http://es6.ruanyifeng.com/#README)，使用goto
+#### 2. 跳转至 [阮一峰老师的ES6博客](http://es6.ruanyifeng.com/#README)，使用goto
 ```js
   let page = await browser.newPage();
   await page.goto('http://es6.ruanyifeng.com/#README');
 ```
 
-### 3. 分析博客左侧导航栏的dom结构，并拿到所有链接的href、title信息
+#### 3. 分析博客左侧导航栏的dom结构，并拿到所有链接的href、title信息
 ```js
   let as = [...document.querySelectorAll('ol li a')];
   return as.map((a) =>{
@@ -126,7 +126,7 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
   });
 ```
 
-### 4. 使用Puppeteer打印当前页面的PDF，使用pdf
+#### 4. 使用Puppeteer打印当前页面的PDF，使用pdf
 ```js
   await page.pdf({path: `./es6-pdf/${aTags[0].name}.pdf`});
 ```
