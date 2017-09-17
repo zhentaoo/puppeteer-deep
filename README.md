@@ -19,10 +19,10 @@
 
 ## 一、 UI自动化测试--自动推荐segmentfault的热门文章到掘金
 #### 1. 废话不多说，先上动图/视频看效果
-GIF图片比较大，如果不能加载成功，也可以到微博看下录制的视频
-http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
+  GIF图片比较大，如果不能加载成功，也可以到微博看下录制的视频
+  http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 
-<img src="https://raw.githubusercontent.com/zhentaoo/puppeteer-deep/master/doc/sf-jj.gif" width = "700" height = "440" align=center />
+  <img src="https://raw.githubusercontent.com/zhentaoo/puppeteer-deep/master/doc/sf-jj.gif" width = "700" height = "440" align=center />
 
 #### 2. 开始介绍，第一步，爬取 segmentfault 前30篇热门文章
   - 跳转到https://segmentfault.com/news/frontend
@@ -102,65 +102,66 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 ## 二、高级爬虫--爬取《ES6标准入门》并打印成PDF
 
 #### 1. 运行Puppeteer，使用launch
-```js
-  puppeteer.launch().then(async browser => {
-    ......
-    what you want
-    ......
-  })
-```
+  ```js
+    puppeteer.launch().then(async browser => {
+      ......
+      what you want
+      ......
+    })
+  ```
 
 #### 2. 跳转至 [阮一峰老师的ES6博客](http://es6.ruanyifeng.com/#README)，使用goto
-```js
-  let page = await browser.newPage();
-  await page.goto('http://es6.ruanyifeng.com/#README');
-```
+  ```js
+    let page = await browser.newPage();
+    await page.goto('http://es6.ruanyifeng.com/#README');
+  ```
 
 #### 3. 分析博客左侧导航栏的dom结构，并拿到所有链接的href、title信息
-```js
-  let as = [...document.querySelectorAll('ol li a')];
-  return as.map((a) =>{
-      return {
-        href: a.href.trim(),
-        name: a.text
-      }
-  });
-```
+  ```js
+    let as = [...document.querySelectorAll('ol li a')];
+    return as.map((a) =>{
+        return {
+          href: a.href.trim(),
+          name: a.text
+        }
+    });
+  ```
+
 #### 4. 使用Puppeteer打印当前页面的PDF，使用pdf
-```js
-  await page.pdf({path: `./es6-pdf/${aTags[0].name}.pdf`});
-```
+  ```js
+    await page.pdf({path: `./es6-pdf/${aTags[0].name}.pdf`});
+  ```
 
 #### 5. 最终结果，将20多页博客打印成PDF
-![./doc/es6.png](./doc/es6.png)
+  ![./doc/es6.png](./doc/es6.png)
 
 
 ## 三、性能分析--Puppeteer Trace API
 
 #### 1. 简单介绍 Trace API
->> Trace API其实很简单，主要是使用Chrome Performance，生成当前页面的 性能追踪 文件，
-然后将该文件上传给Chrome，然后分析火焰图、各种数据参数
+  > Trace API其实很简单，主要是使用Chrome Performance，生成当前页面的 性能追踪 文件，
+  然后将该文件上传给Chrome，然后分析火焰图、各种数据参数
 
 #### 2. API: 使用 tracing start，stop生成trace.json
-```js
-await page.tracing.start({path: './data/trace/trace.json'});
-await page.goto('http://www.zhentaoo.com');
-await page.tracing.stop();
-```
+  ```js
+  await page.tracing.start({path: './data/trace/trace.json'});
+  await page.goto('http://www.zhentaoo.com');
+  await page.tracing.stop();
+  ```
 
 #### 3. 将trace.json上传给chrome，如下图
-![./doc/pp-trace.png](./doc/pp-trace.png)
+  ![./doc/pp-trace.png](./doc/pp-trace.png)
 
 #### 4. Chrome Performance/Timeline 使用教程
 关于Chrome Performance／Timeline的使用又是一个大篇幅，这里提供一个教程
-1. [Chrome 开发者工具](https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn)
-2. [如何查看性能](https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn)
-3. [分析运行时性能](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool?hl=zh-cn)
-4. [诊断强制的同步布局](https://developers.google.com/web/tools/chrome-devtools/rendering-tools/forced-synchronous-layouts?hl=zh-cn)
+  - [Chrome 开发者工具](https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn)
+  - [如何查看性能](https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn)
+  - [分析运行时性能](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool?hl=zh-cn)
+  - [诊断强制的同步布局](https://developers.google.com/web/tools/chrome-devtools/rendering-tools/forced-synchronous-layouts?hl=zh-cn)
 
 
 ## 结语
-1. 为了效果展示，这里使用的headless: false模式，实际使用时可以同时开n个page，模拟操作，大家可以尝试改改，也可以给我提PR
-2. 目前已经带领大家，使用Puppeteer完成爬虫 和 UI自动化测试，接下来可能会出第三篇，应该会是关于前端性能分析
-3. 其实Puppeteer的应用场景远不止这些，大家也可以使用它在各自的领域大放异彩！！！
-4. 希望掘金小编不会打我....
+  1. 为了效果展示，这里使用的headless: false模式，实际使用时可以同时开n个page，模拟操作，大家可以尝试改改，也可以给我提PR
+  2. 目前已经带领大家，使用Puppeteer完成爬虫 和 UI自动化测试，接下来可能会出第三篇，应该会是关于前端性能分析
+  3. 其实Puppeteer的应用场景远不止这些，大家也可以使用它在各自的领域大放异彩！！！
+  4. 希望掘金小编不会打我....
