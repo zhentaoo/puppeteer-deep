@@ -7,7 +7,7 @@
 ## 提下Puppeteer的应用场景, 本项目会针对此做几个可用的DEMO，并附上详解
 1. 高级爬虫（有别于传统爬虫.使用Puppeteer可以拿到渲染后的效果。而传统爬虫相当于只能拿到http response，对字符串进行解析）
 2. UI自动化测试（使用Puppeteer可以模拟用户操作，模拟表单填写）
-3. 页面性能分析 (使用chrome的timeline，等等)
+3. 页面性能分析 (使用chrome的timeline，也就是Puppeteer提供的trace API)
 
 ## 项目Repo && Usage
 1. git clone https://github.com/zhentaoo/puppeteer-deep
@@ -15,6 +15,7 @@
 3. npm run sf-juejin (推荐segmentfault的热门文章到掘金)
 4. npm run es6 (爬取了阮一峰老师的《ES6标准入门》并打印PDF)
 5. npm run zhentaoo (打印 www.zhentaoo.com 首页的图片)
+5. npm run trace (生成 www.zhentaoo.com 的trace.json，并分析性能)
 
 ## 废话不多说，先上动图/视频看效果
 GIF图片比较大，如果不能加载成功，也可以到微博看下录制的视频
@@ -131,6 +132,32 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 ```js
   await page.pdf({path: `./es6-pdf/${aTags[0].name}.pdf`});
 ```
+
+#### 5. 最终结果，将20多页博客打印成PDF
+![./doc/es6.png](./doc/es6.png)
+
+## 三、性能分析--Puppeteer Trace API
+#### 1. 简单介绍 Trace API
+Trace API其实很简单，主要就是使用Chrome Performance，生成当前页面的 性能追踪文件，可以得到各种数据
+
+#### 2. API: 使用 tracing start，stop生成trace.json
+```js
+await page.tracing.start({path: './data/trace/trace.json'});
+await page.goto('http://www.zhentaoo.com');
+await page.tracing.stop();
+```
+![]()
+
+#### 3. 将trace.json上传给chrome，如下图
+![./doc/pp-trace.png](./doc/pp-trace.png)
+
+#### 4. Chrome Performance 分析，使用
+关于Chrome Performance／Timeline的使用又是一个大篇幅，这里提供一个教程
+1. [Chrome 开发者工具](https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn)
+2. [如何查看性能](https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn)
+3. [分析运行时性能](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool?hl=zh-cn)
+4. [诊断强制的同步布局](https://developers.google.com/web/tools/chrome-devtools/rendering-tools/forced-synchronous-layouts?hl=zh-cn)
+
 
 ## 结语
 1. 为了效果展示，这里使用的headless: false模式，实际使用时可以同时开n个page，模拟操作，大家可以尝试改改，也可以给我提PR

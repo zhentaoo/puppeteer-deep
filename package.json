@@ -9,7 +9,7 @@
     "sf-juejin": "node src/sf-juejin.js",
     "zhentaoo": "node src/zhentaoo.js",
     "es6": "rm -rf ./es6-pdf/* && node src/es6-crawl.js",
-    "analyze": "node src/analyze.js"
+    "trace": "node src/trace.js"
   },
   "author": "",
   "license": "ISC",
