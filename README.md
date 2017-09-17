@@ -22,7 +22,7 @@
   GIF图片比较大，如果不能加载成功，也可以到微博看下录制的视频
   http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 
-  <img src="https://raw.githubusercontent.com/zhentaoo/puppeteer-deep/master/doc/sf-jj.gif" width = "700" height = "440" align=center />
+  <img src="https://raw.githubusercontent.com/zhentaoo/puppeteer-deep/master/doc/sf-jj.gif" width = "800" align=center />
 
 #### 2. 开始介绍，第一步，爬取 segmentfault 前30篇热门文章
   - 跳转到https://segmentfault.com/news/frontend
@@ -133,14 +133,13 @@
   ```
 
 #### 5. 最终结果，将20多页博客打印成PDF
-  ![./doc/es6.png](./doc/es6.png)
-
+  <img src="./doc/es6.png" width = "800" align=center />
 
 ## 三、性能分析--Puppeteer Trace API
 
 #### 1. 简单介绍 Trace API
   > Trace API其实很简单，主要是使用Chrome Performance，生成当前页面的 性能追踪 文件，
-  然后将该文件上传给Chrome，然后分析火焰图、各种数据参数
+  然后将该文件上传给Chrome，就可以利用Chrome的开发者工具分析火焰图、各种数据参数
 
 #### 2. API: 使用 tracing start，stop生成trace.json
   ```js
@@ -148,10 +147,10 @@
   await page.goto('http://www.zhentaoo.com');
   await page.tracing.stop();
   ```
-  ![./doc/pp-trace2.png](./doc/pp-trace2.png)
+  <img src="./doc/pp-trace2.png" width = "800" align=center />
 
 #### 3. 将trace.json上传给chrome，如下图
-  ![./doc/pp-trace.png](./doc/pp-trace.png)
+  <img src="./doc/pp-trace.png" width = "800" align=center />
 
 #### 4. Chrome Performance/Timeline 使用教程
 关于Chrome Performance／Timeline的使用又是一个大篇幅，这里提供一个教程
