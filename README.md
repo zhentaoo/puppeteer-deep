@@ -148,6 +148,7 @@
   await page.goto('http://www.zhentaoo.com');
   await page.tracing.stop();
   ```
+  ![./doc/pp-trace2.png](./doc/pp-trace2.png)
 
 #### 3. 将trace.json上传给chrome，如下图
   ![./doc/pp-trace.png](./doc/pp-trace.png)
