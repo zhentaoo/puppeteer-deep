@@ -17,15 +17,14 @@
 5. npm run zhentaoo (打印 www.zhentaoo.com 首页的图片)
 5. npm run trace (生成 www.zhentaoo.com 的trace.json，并分析性能)
 
-## 废话不多说，先上动图/视频看效果
+## 一、 UI自动化测试--自动推荐segmentfault的热门文章到掘金
+#### 1. 废话不多说，先上动图/视频看效果
 GIF图片比较大，如果不能加载成功，也可以到微博看下录制的视频
 http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 
 <img src="https://raw.githubusercontent.com/zhentaoo/puppeteer-deep/master/doc/sf-jj.gif" width = "700" height = "440" align=center />
 
-## 一、 UI自动化测试--自动推荐segmentfault的热门文章到掘金
-
-#### 1. 爬取 segmentfault 前30篇热门文章
+#### 2. 开始介绍，第一步，爬取 segmentfault 前30篇热门文章
   - 跳转到https://segmentfault.com/news/frontend
   - 接着分析SF首页的Dom结构，爬取每篇文章的链接
   - 然后取出每篇文章最重要的 href，title 等信息
@@ -43,7 +42,7 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
       await page.screenshot({path: './sf-juejin/sf.png', type: 'png'});
   ```
 
-#### 2. 登录掘金 (这里我事先注册了个测试账号,大家可以替换成自己的)
+#### 3. 登录掘金 (这里我事先注册了个测试账号,大家可以替换成自己的)
 - 跳转到掘金，模拟点击登录按钮
 - 接着，会弹出一个的登录dialog，模拟输入用户名密码
 - 模拟点击登录，稍等....嗯...掘金应该把cookie写好了....
@@ -65,7 +64,7 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
       var authLogin = await page.$('.panel .btn')
       await authLogin.click()
 ```
-#### 3.推荐文章（使用第一步从SF爬取的文章信息）
+#### 4.推荐文章（使用第一步从SF爬取的文章信息）
 - 模拟点击推荐文章 按钮 “＋”
 - 这时从SF拿到的文章信息就派上用场了，随机取出一篇: Math.floor(Math.random() * 30)
 - 模拟填写推荐表单，点击发布
@@ -127,7 +126,6 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
       }
   });
 ```
-
 #### 4. 使用Puppeteer打印当前页面的PDF，使用pdf
 ```js
   await page.pdf({path: `./es6-pdf/${aTags[0].name}.pdf`});
@@ -136,9 +134,12 @@ http://weibo.com/tv/v/FiHMz7dcq?fid=1034:dcc08a8eee118263f6071fb6fafcc9a9
 #### 5. 最终结果，将20多页博客打印成PDF
 ![./doc/es6.png](./doc/es6.png)
 
+
 ## 三、性能分析--Puppeteer Trace API
+
 #### 1. 简单介绍 Trace API
-Trace API其实很简单，主要就是使用Chrome Performance，生成当前页面的 性能追踪文件，可以得到各种数据
+>> Trace API其实很简单，主要是使用Chrome Performance，生成当前页面的 性能追踪 文件，
+然后将该文件上传给Chrome，然后分析火焰图、各种数据参数
 
 #### 2. API: 使用 tracing start，stop生成trace.json
 ```js
@@ -146,12 +147,11 @@ await page.tracing.start({path: './data/trace/trace.json'});
 await page.goto('http://www.zhentaoo.com');
 await page.tracing.stop();
 ```
-![]()
 
 #### 3. 将trace.json上传给chrome，如下图
 ![./doc/pp-trace.png](./doc/pp-trace.png)
 
-#### 4. Chrome Performance 分析，使用
+#### 4. Chrome Performance/Timeline 使用教程
 关于Chrome Performance／Timeline的使用又是一个大篇幅，这里提供一个教程
 1. [Chrome 开发者工具](https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn)
 2. [如何查看性能](https://developers.google.com/web/tools/chrome-devtools/?hl=zh-cn)
