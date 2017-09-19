@@ -9,13 +9,15 @@
 2. UI自动化测试（使用Puppeteer可以模拟用户操作，模拟表单填写）
 3. 页面性能分析 (使用chrome的timeline，也就是Puppeteer提供的trace API)
 
-## 项目Repo && Usage
+## 项目Repo && Usage（[博文详解](http://www.zhentaoo.com/2017/08/23/Pupputeer2/)）
 1. git clone https://github.com/zhentaoo/puppeteer-deep
 2. npm install (puppeteer在win下100+M、mac下70+M，请耐心等候)
-3. npm run sf-juejin (推荐segmentfault的热门文章到掘金)
-4. npm run es6 (爬取了阮一峰老师的《ES6标准入门》并打印PDF)
-5. npm run zhentaoo (打印 www.zhentaoo.com 首页的图片)
-5. npm run trace (生成 www.zhentaoo.com 的trace.json，并分析性能)
+
+- npm run sf-juejin (推荐segmentfault的热门文章到掘金)
+- npm run monitor (前端监控、报警)
+- npm run es6 (爬取了阮一峰老师的《ES6标准入门》并打印PDF)
+- npm run zhentaoo (打印 www.zhentaoo.com 首页的图片)
+- npm run trace (生成 www.zhentaoo.com 的trace.json，并分析性能)
 
 ## 一、 UI自动化测试--自动推荐segmentfault的热门文章到掘金
 #### 1. 废话不多说，先上动图/视频看效果
@@ -99,7 +101,28 @@
       await submitBtn.click()
 ```
 
-## 二、高级爬虫--爬取《ES6标准入门》并打印成PDF
+## 二、 前端监控系统
+#### 1. 为什么要有前端监控系统?
+ > 目前市面上以及各大公司流行的监控系统，都是API层的监控，包括调用量、数据、响应时长.....
+ > 似乎只要接口没问题，整个系统就是稳定运行的，一切皆大欢喜
+ > 但事实并非如此，CDN、DNS、Webview等等这些条件，都可能导致前端渲染失败、白屏
+ > 离用户最近的一层--前端，却迟迟没有被加入监控列表，无形中流失多少用户.....
+
+#### 2. Node Express Server
+  - 如果还不会用express，请看我的博客 http://www.zhentaoo.com/2016/05/13/ExpressJS/
+  - 使用 `express monitor` 命令，生成express项目模版
+  - 安装并启动mongodb，推荐 robomongo 可视化工具
+
+#### 3. 定时脚本
+  每隔5分钟，访问 www.zhentaoo.com，并
+
+#### 4. 监控系统进阶：与Chrome插件的集成
+  > 如果单纯的监控系统，每每需要点击，然后去看监控的情况，想必也有些麻烦
+  > 那么为何不做个Chrome插件，显示监控状态呢？
+  > 好吧，可以看我的另一个repo，https://github.com/zhentaoo/bitcoin-price，学习如何写一个chrome插件
+  > 然后监控系统提供API给Chrome插件使用
+
+## 三、高级爬虫--爬取《ES6标准入门》并打印成PDF
 
 #### 1. 运行Puppeteer，使用launch
   ```js
@@ -135,7 +158,8 @@
 #### 5. 最终结果，将20多页博客打印成PDF
   <img src="./doc/es6.png" width = "800" align=center />
 
-## 三、性能分析--Puppeteer Trace API
+
+## 四、性能分析--Puppeteer Trace API
 
 #### 1. 简单介绍 Trace API
   > Trace API其实很简单，主要是使用Chrome Performance，生成当前页面的 性能追踪 文件，
