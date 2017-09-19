@@ -1,27 +1,34 @@
 const puppeteer = require('puppeteer');
-var {timeout, moment} = require('../../../tools/tools.js');
+let {timeout, moment} = require('../../../tools/tools.js');
+let rp = require('request-promise');
 
 function monitor() {
-  puppeteer.launch().then(async browser => {
-      let page = await browser.newPage();
+    puppeteer.launch().then(async browser => {
+        let page = await browser.newPage();
+        let date = moment("Y-M-DTh:m:s");
 
-      await page.goto('http://www.zhentaoo.com/');
-      await timeout(2000);
+        // 进入网站后，等待三秒
+        await page.goto('http://www.zhentaoo.com/');
+        await timeout(3000);
 
-      let aTags = await page.evaluate(() => {
-        let as = [...document.querySelectorAll('ol li a')];
-        return as.map((a) =>{
-            return {
-              href: a.href.trim(),
-              name: a.text
-            }
+        // 取出首页的文章title，如果有title为空，则截图存入err，mongo，结束本次任务
+        let info = await page.evaluate(() => {
+            let post = [...document.querySelectorAll('.post-title')];
+            return post.map((a) => a.innerText );
         });
-      });
-      
-      var date = Math.random();
-      await page.screenshot({path: `./data/monitor/zhentaoo-${date}.png`, type: 'png'});
-      browser.close();
-  });
+
+        for (var i = 0; i < info.length; i++) {
+          if (!info[i]) {
+            rq('http://127.0.0.1:3000/monitor')
+            await page.screenshot({path: `./data/monitor/err/ZT-${date}.png`, type: 'png'});
+            browser.close();
+          }
+        }
+
+        // 如果正常则截图，结束任务
+        await page.screenshot({path: `./data/monitor/success/ZT-${date}.png`, type: 'png'});
+        browser.close();
+    });
 }
 
 monitor();

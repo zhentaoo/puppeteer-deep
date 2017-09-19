@@ -113,7 +113,7 @@
   - 如果还不会用express，请看我的博客 http://www.zhentaoo.com/2016/05/13/ExpressJS/
   - 使用 `express monitor` 命令，生成express项目模版
   - 安装并启动mongodb，推荐 robomongo 可视化工具
-  - 提供两个接口，当Puppeteer发现网页渲染有异常则调用
+  - 提供两个接口，1当Puppeteer发现网页渲染有异常则调用,2获取系统监控状态
 
 #### 3. 定时脚本
   - 设置定是脚本，每隔5分钟，访问 www.zhentaoo.com，抓取关键信息，并生成截图

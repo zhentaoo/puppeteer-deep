@@ -4,15 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var shell = require('shelljs');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var monitor = require('./routes/monitor');
+var child_process = require('child_process');
 
 /**
- * 运行scripts脚本
+ * 运行scripts脚本,定时抓取www.zhentaoo.com的首页
  */
-shell.exec(`node ./src/monitor/scripts/monitor.js`)
+child_process.spawn('node', ['./src/monitor/scripts/monitor.js']);
 
 /**
  * 启动express实例
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/monitor', monitor);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
