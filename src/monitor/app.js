@@ -4,10 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var shell = require('shelljs');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+/**
+ * 运行scripts脚本
+ */
+shell.exec(`node ./src/monitor/scripts/monitor.js`)
+
+/**
+ * 启动express实例
+ */
 var app = express();
 
 // view engine setup

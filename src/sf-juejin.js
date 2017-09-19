@@ -1,16 +1,5 @@
 const puppeteer = require('puppeteer')
-
-var timeout = function(delay) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            try {
-                resolve(1)
-            } catch (e) {
-                reject(0)
-            }
-        }, delay)
-    })
-}
+var {timeout} = require('../tools/tools.js');
 
 // 以下拿掘金开刀,贡献私人测试账号
 // puppeteer.launch().then(async browser => {
@@ -55,14 +44,13 @@ puppeteer.launch({headless: false}).then(async browser => {
         var password = await page.$('[placeholder=请输入密码]')
         console.log('password:', password);
         await password.click()
-        await page.type('aaa123456', {delay: 20})
+        await page.type('123456', {delay: 20})
 
         var authLogin = await page.$('.panel .btn')
         console.log('authLogin:', authLogin);
         await authLogin.click()
 
     } catch (e) {}
-
 
     /** 随机推荐一篇从sf拿来的文章到掘金 **/
     try {
@@ -85,11 +73,11 @@ puppeteer.launch({headless: false}).then(async browser => {
         await page.type(theArtile.title, {delay: 20})
 
         await page.evaluate(() => {
-          let li = [...document.querySelectorAll('.category-list-box .category-list .item')]
-          li.forEach(el => {
-            if (el.innerText == '前端')
-              el.click()
-          })
+            let li = [...document.querySelectorAll('.category-list-box .category-list .item')]
+            li.forEach(el => {
+                if (el.innerText == '前端')
+                    el.click()
+            })
         })
 
         var submitBtn = await page.$('.submit-btn')

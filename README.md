@@ -4,12 +4,13 @@
 - Puppeteer的应用场景会非常多，就爬虫领域来说，远比一般的爬虫工具功能更丰富，性能分析、自动化测试也不在话下
 - [Puppeteer官方文档请猛戳这里](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions)
 
-## 提下Puppeteer的应用场景, 本项目会针对此做几个可用的DEMO，并附上详解
+## 提下Puppeteer的应用场景, 本项目会针对此做几个可用的DEMO，有些会放入博客进行详解
 1. 高级爬虫（有别于传统爬虫.使用Puppeteer可以拿到渲染后的效果。而传统爬虫相当于只能拿到http response，对字符串进行解析）
 2. UI自动化测试（使用Puppeteer可以模拟用户操作，模拟表单填写）
 3. 页面性能分析 (使用chrome的timeline，也就是Puppeteer提供的trace API)
+4. 访问 http://www.zhentaoo.com/2017/08/23/Pupputeer2/ , 有3篇更为细致的介绍
 
-## 项目Repo && Usage（[博文详解](http://www.zhentaoo.com/2017/08/23/Pupputeer2/)）
+## 项目Repo && Usage
 1. git clone https://github.com/zhentaoo/puppeteer-deep
 2. npm install (puppeteer在win下100+M、mac下70+M，请耐心等候)
 
@@ -101,7 +102,7 @@
       await submitBtn.click()
 ```
 
-## 二、 前端监控系统
+## 二、 前端监控系统（这篇会在我的博客中详细介绍）
 #### 1. 为什么要有前端监控系统?
  > 目前市面上以及各大公司流行的监控系统，都是API层的监控，包括调用量、数据、响应时长.....
  > 似乎只要接口没问题，整个系统就是稳定运行的，一切皆大欢喜
@@ -112,11 +113,39 @@
   - 如果还不会用express，请看我的博客 http://www.zhentaoo.com/2016/05/13/ExpressJS/
   - 使用 `express monitor` 命令，生成express项目模版
   - 安装并启动mongodb，推荐 robomongo 可视化工具
+  - 提供两个接口，当Puppeteer发现网页渲染有异常则调用
 
 #### 3. 定时脚本
-  每隔5分钟，访问 www.zhentaoo.com，并
+  - 设置定是脚本，每隔5分钟，访问 www.zhentaoo.com，抓取关键信息，并生成截图
+  - 如果信息获取失败，则将截图保存至err目录，并记入数据库中
+  ```js
+  function monitor() {
+  puppeteer.launch().then(async browser => {
+      let page = await browser.newPage();
 
-#### 4. 监控系统进阶：与Chrome插件的集成
+      await page.goto('http://www.zhentaoo.com/');
+      await timeout(2000);
+
+      let aTags = await page.evaluate(() => {
+        let as = [...document.querySelectorAll('ol li a')];
+        return as.map((a) =>{
+            return {
+              href: a.href.trim(),
+              name: a.text
+            }
+        });
+      });
+
+      await page.screenshot({path: './data/zhentaoo/zhentaoo.png', type: 'png'});
+      browser.close();
+    });
+  }
+
+  monitor();
+  setInterval(monitor, 1000 * 60 * 5);
+  ```
+
+#### 4. 进阶：与Chrome插件集成
   > 如果单纯的监控系统，每每需要点击，然后去看监控的情况，想必也有些麻烦
   > 那么为何不做个Chrome插件，显示监控状态呢？
   > 好吧，可以看我的另一个repo，https://github.com/zhentaoo/bitcoin-price，学习如何写一个chrome插件
@@ -171,7 +200,7 @@
   await page.goto('http://www.zhentaoo.com');
   await page.tracing.stop();
   ```
-  <img src="./doc/pp-trace2.png" width = "800" align=center />
+  <!-- <img src="./doc/pp-trace2.png" width = "800" align=center /> -->
 
 #### 3. 将trace.json上传给chrome，如下图
   <img src="./doc/pp-trace.png" width = "800" align=center />

@@ -1,16 +1,5 @@
 const puppeteer = require('puppeteer');
-
-let timeout = function(delay) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            try {
-                resolve(1)
-            } catch (e) {
-                reject(0)
-            }
-        }, delay)
-    })
-}
+var {timeout} = require('../tools/tools.js');
 
 puppeteer.launch().then(async browser => {
     let page = await browser.newPage();
