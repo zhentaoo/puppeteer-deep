@@ -17,9 +17,16 @@ function monitor() {
             return post.map((a) => a.innerText );
         });
 
-        for (var i = 0; i < info.length; i++) {
+        for (let i = 0; i < info.length; i++) {
           if (!info[i]) {
-            rq('http://127.0.0.1:3000/monitor')
+            let options = {
+                uri: 'http://127.0.0.1:3000/monitor',
+                qs: {
+                    img: `ZT-${date}.png`
+                }
+            };
+
+            rq(options);
             await page.screenshot({path: `./data/monitor/err/ZT-${date}.png`, type: 'png'});
             browser.close();
           }
