@@ -102,7 +102,7 @@
       await submitBtn.click()
 ```
 
-## 二、 前端监控系统（http://zhentaoo.com/2017/10/14/Puppeteer3/）
+## 二、 前端监控系统 http://zhentaoo.com/2017/10/14/Puppeteer3
 
 #### 代码 https://github.com/zhentaoo/hawk-eye
 
