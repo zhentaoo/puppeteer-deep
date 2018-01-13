@@ -10,7 +10,8 @@
     "zhentaoo": "node src/zhentaoo.js",
     "es6": "rm -rf ./es6-pdf/* && node src/es6-crawl.js",
     "trace": "node src/trace.js",
-    "monitor": "node src/monitor/bin/www"
+    "monitor": "node src/monitor/bin/www",
+    "shuabi": "node src/shuabi.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer')
 var {timeout} = require('../tools/tools.js');
 
+var delay = 1000
 // 以下拿掘金开刀,贡献私人测试账号
 // puppeteer.launch().then(async browser => {
 puppeteer.launch({headless: false}).then(async browser => {
@@ -10,7 +11,7 @@ puppeteer.launch({headless: false}).then(async browser => {
     /** 1. 到sf获取最新的前端文章 **/
     try {
         await page.goto('https://segmentfault.com/news/frontend')
-        await timeout(1000)
+        await timeout(delay)
 
         var SfFeArticleList = await page.evaluate(() => {
             var list = [...document.querySelectorAll('.news__list .news__item-title a')]
@@ -29,9 +30,9 @@ puppeteer.launch({headless: false}).then(async browser => {
 
     /** 登录juejin **/
     try {
-        await timeout(1000)
+        await timeout(3000)
         await page.goto('https://juejin.im')
-        await timeout(1000)
+        await timeout(3000)
 
         var login = await page.$('.login')
         await login.click()
@@ -44,7 +45,7 @@ puppeteer.launch({headless: false}).then(async browser => {
         var password = await page.$('[placeholder=请输入密码]')
         console.log('password:', password);
         await password.click()
-        await page.type('123456', {delay: 20})
+        await page.type('aaa123456', {delay: 20})
 
         var authLogin = await page.$('.panel .btn')
         console.log('authLogin:', authLogin);
@@ -58,8 +59,12 @@ puppeteer.launch({headless: false}).then(async browser => {
         var seed = Math.floor(Math.random() * 30)
         var theArtile = SfFeArticleList[seed]
 
-        var add = await page.$('.main-nav .ion-android-add')
+        var add = await page.$('.main-nav .more')
         await add.click()
+
+        var addLink = await page.$('.more-list .item')
+        await addLink.click()
+
         await timeout(2500)
 
         var shareUrl = await page.$('.entry-form-input .url-input')
