@@ -1,14 +1,27 @@
 const puppeteer = require('puppeteer');
 var {timeout} = require('../tools/tools.js');
 
-var fxUrl = 'https://yeecall.gl.yeecall.com/activity/share/5a59a9d14cc2562b0fd32ec5'
-var meUrl = 'https://yeecall.gl.yeecall.com/activity/share/5a599e2664325570dd5b6c25'
+// var fxUrl = 'https://yeecall.gl.yeecall.com/activity/share/5a59a9d14cc2562b0fd32ec5'
+// var meUrl = 'https://yeecall.gl.yeecall.com/activity/share/5a599e2664325570dd5b6c25'
+
+var url1 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a2507edea6a2010998444'
+var url2 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a24deebf2136b273c05ce'
+var url3 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a297debf2136b273c26ab'
+var url4 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a2986ebf2136b273c26f0'
+var url5 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a29add6ab05313934d7f6'
+var url6 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a29c4ebf2136b273c2851'
+
+
 var token = [
   '0x1AA59c01fa169fB6A4a2E2D7DB9D02db9A9e',
   '0x1BD55G01fa169fkjA7a2E2D7SBG8R0dgy928',
   '0x1TG85G01faII2fkjA7a3G2DD76BG8D10dgyO',
   '0x1TON15GMUXaIO3BkjA7a3M8UD78YB8D1B3Gy',
-  '0x100im57UNXaIa7bkjA7a3M8UD78YB8D1B3Gy'
+  '0x100im57UNXaIa7bkjA7a3M8UD78YB8D1B3Gy',
+  '0x5197fa565CED81cf5d599169e73754F0EDdC',
+  '0xD3Da927d3698832fA68568152E43E9824b30',
+  '0x743fFa1891640d0eA108d69362a287ea1063',
+  '0x56B86E766860D8866B42e87B041BBa8065AE',
 ]
 
 function rdToken() {
@@ -27,24 +40,46 @@ function rdToken() {
   var rd2 = Math.floor( Math.random() * 62 )
   var rd3 = Math.floor( Math.random() * 62 )
   var rd4 = Math.floor( Math.random() * 62 )
-  var tookenRand = Math.floor( Math.random() * 5 )
+  var tookenRand = Math.floor( Math.random() * 9 )
 
   return token[tookenRand] + seed[rd1] + seed[rd2] + seed[rd3] + seed[rd4]
 }
 var count = 0
 // puppeteer.launch().then(async browser => {
 puppeteer.launch({headless: false}).then(async browser => {
-    let p = await browser.newPage();
     let p1 = await browser.newPage();
+    let p2 = await browser.newPage();
+    let p3 = await browser.newPage();
+    let p4 = await browser.newPage();
+    let p5 = await browser.newPage();
+    let p6 = await browser.newPage();
 
-    loop(p1, fxUrl)
-    loop(p, meUrl)
-    var sid = setInterval(() => {
-      loop(p1, fxUrl)
-      loop(p, meUrl)
-    }, 1000 * 6);
+    oneVisit(p1, url1)
+    oneVisit(p2, url2)
+    oneVisit(p3, url3)
+    oneVisit(p4, url4)
+    oneVisit(p5, url5)
+    oneVisit(p6, url6)
 
-    async function loop(page, url) {
+    rdLoop()
+
+    function rdLoop() {
+      var time = Math.floor( Math.random() * 30 ) + 5
+
+      setTimeout(function () {
+        oneVisit(p1, url1)
+        oneVisit(p2, url2)
+        oneVisit(p3, url3)
+        oneVisit(p4, url4)
+        oneVisit(p5, url5)
+        oneVisit(p6, url6)
+        
+        console.log('time:', time);
+        rdLoop()
+      }, time * 1000);
+    }
+
+    async function oneVisit(page, url) {
       await page.goto(url);
 
       var input = await page.$('input')
@@ -54,8 +89,6 @@ puppeteer.launch({headless: false}).then(async browser => {
 
       var submit = await page.$('button')
       await submit.click()
-      console.log('success:', count);
-      count ++
       await timeout(500);
 
       var ICO_TOKEN = await page.evaluate(() => {
