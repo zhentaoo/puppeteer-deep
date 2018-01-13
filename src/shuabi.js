@@ -10,7 +10,10 @@ var url3 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a297debf2136b273c
 var url4 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a2986ebf2136b273c26f0'
 var url5 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a29add6ab05313934d7f6'
 var url6 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a29c4ebf2136b273c2851'
-
+var url7 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a2ec6edea6a201099cf70'
+var url8 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a2ecdd6ab0531393500ad'
+var url9 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a2edad6ab05313935010a'
+var url10 = 'https://yeecall.gl.yeecall.com/activity/share?t=5a5a2ee2edea6a201099d040'
 
 var token = [
   '0x1AA59c01fa169fB6A4a2E2D7DB9D02db9A9e',
@@ -45,14 +48,18 @@ function rdToken() {
   return token[tookenRand] + seed[rd1] + seed[rd2] + seed[rd3] + seed[rd4]
 }
 var count = 0
-// puppeteer.launch().then(async browser => {
-puppeteer.launch({headless: false}).then(async browser => {
+puppeteer.launch().then(async browser => {
+// puppeteer.launch({headless: false}).then(async browser => {
     let p1 = await browser.newPage();
     let p2 = await browser.newPage();
     let p3 = await browser.newPage();
     let p4 = await browser.newPage();
     let p5 = await browser.newPage();
     let p6 = await browser.newPage();
+    let p7 = await browser.newPage();
+    let p8 = await browser.newPage();
+    let p9 = await browser.newPage();
+    let p10 = await browser.newPage();
 
     oneVisit(p1, url1)
     oneVisit(p2, url2)
@@ -60,11 +67,16 @@ puppeteer.launch({headless: false}).then(async browser => {
     oneVisit(p4, url4)
     oneVisit(p5, url5)
     oneVisit(p6, url6)
+    oneVisit(p7, url7)
+    oneVisit(p8, url8)
+    oneVisit(p9, url9)
+    oneVisit(p10, url10)
 
     rdLoop()
 
     function rdLoop() {
-      var time = Math.floor( Math.random() * 30 ) + 5
+      var time = Math.floor( Math.random() * 40 ) + 5
+      console.log('time:', time);
 
       setTimeout(function () {
         oneVisit(p1, url1)
@@ -73,7 +85,11 @@ puppeteer.launch({headless: false}).then(async browser => {
         oneVisit(p4, url4)
         oneVisit(p5, url5)
         oneVisit(p6, url6)
-        
+        oneVisit(p7, url7)
+        oneVisit(p8, url8)
+        oneVisit(p9, url9)
+        oneVisit(p10, url10)
+
         console.log('time:', time);
         rdLoop()
       }, time * 1000);
