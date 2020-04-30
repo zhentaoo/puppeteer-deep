@@ -4,7 +4,7 @@
 - Puppeteer的应用场景会非常多，就爬虫领域来说，远比一般的爬虫工具功能更丰富，性能分析、自动化测试也不在话下
 - [Puppeteer官方文档请猛戳这里](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions)
 
-## 提下Puppeteer的应用场景, 本项目会针对此做几个可用的DEMO，有些会放入博客进行详解
+## 本项目会针对Puppeteer应用场景做几个可用的DEMO
 1. 高级爬虫（有别于传统爬虫.使用Puppeteer可以拿到渲染后的效果。而传统爬虫相当于只能拿到http response，对字符串进行解析）
 2. UI自动化测试（使用Puppeteer可以模拟用户操作，模拟表单填写）
 3. 页面性能分析 (使用chrome的timeline，也就是Puppeteer提供的trace API)
@@ -101,7 +101,7 @@
       await submitBtn.click()
 ```
 
-## 二、 前端监控系统 https://github.com/zhentaoo/hawk-eye
+## 二、 前端监控系统
 
 #### 代码 https://github.com/zhentaoo/hawk-eye
 
@@ -223,7 +223,6 @@
 ## 其他
   如果你觉得该项目对你有用，欢迎打赏作者~~~
   <br />
-  <img src="./doc/ali-pay.jpeg" width = "300" align=right />
-  <img src="./doc/wx-pay.jpeg" width = "300" align=left />
+  <img src="./doc/ali-pay.png" width = "300"/>
+  <img src="./doc/wx-pay.jpeg" width = "300"/>
   
-
