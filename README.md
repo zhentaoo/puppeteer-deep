@@ -223,6 +223,5 @@
 ## 赞助
   如果你觉得该项目对你有用，欢迎打赏作者，你的打赏是开源的强大动力~~~
   <br /><br />
-  <img src="./doc/ali-pay.png" style="margin-right: 50px; float: left" width = "300"/>
-  <img src="./doc/wx-pay.jpeg" width = "300"/>
+  <img src="./doc/wx-pay.jpeg" width = "350"/>
   
