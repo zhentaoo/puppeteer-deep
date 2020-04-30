@@ -220,9 +220,9 @@
   3. 其实Puppeteer的应用场景远不止这些，大家也可以使用它在各自的领域大放异彩！！！
   4. 希望掘金小编不会打我....
 
-## 其他
-  如果你觉得该项目对你有用，欢迎打赏作者~~~
-  <br />
-  <img src="./doc/ali-pay.png" width = "300"/>
+## 赞助
+  如果你觉得该项目对你有用，欢迎打赏作者，你的打赏是开源的强大动力~~~
+  <br /><br />
+  <img src="./doc/ali-pay.png" style="margin-right: 50px; float: left" width = "300"/>
   <img src="./doc/wx-pay.jpeg" width = "300"/>
   
