@@ -8,7 +8,6 @@
 1. 高级爬虫（有别于传统爬虫.使用Puppeteer可以拿到渲染后的效果。而传统爬虫相当于只能拿到http response，对字符串进行解析）
 2. UI自动化测试（使用Puppeteer可以模拟用户操作，模拟表单填写）
 3. 页面性能分析 (使用chrome的timeline，也就是Puppeteer提供的trace API)
-4. 访问 http://www.zhentaoo.com/2017/08/23/Pupputeer2/ , 有3篇更为细致的介绍
 
 ## 项目Repo && Usage
 1. git clone https://github.com/zhentaoo/puppeteer-deep
@@ -102,7 +101,7 @@
       await submitBtn.click()
 ```
 
-## 二、 前端监控系统 http://zhentaoo.com/2017/10/14/Puppeteer3
+## 二、 前端监控系统 https://github.com/zhentaoo/hawk-eye
 
 #### 代码 https://github.com/zhentaoo/hawk-eye
 
@@ -113,7 +112,6 @@
  > 离用户最近的一层--前端，却迟迟没有被加入监控列表，无形中流失多少用户.....
 
 #### 2. Node Express Server
-  - 如果还不会用express，请看我的博客 http://www.zhentaoo.com/2016/05/13/ExpressJS/
   - 使用 `express monitor` 命令，生成express项目模版
   - 安装并启动mongodb，推荐 robomongo 可视化工具
   - 提供两个接口，1当Puppeteer发现网页渲染有异常则调用,2获取系统监控状态
@@ -221,3 +219,11 @@
   2. 目前已经带领大家，使用Puppeteer完成爬虫 和 UI自动化测试，接下来可能会出第三篇，应该会是关于前端性能分析
   3. 其实Puppeteer的应用场景远不止这些，大家也可以使用它在各自的领域大放异彩！！！
   4. 希望掘金小编不会打我....
+
+## 其他
+  如果你觉得该项目对你有用，欢迎打赏作者~~~
+  <br />
+  <img src="./doc/ali-pay.jpeg" width = "300" align=right />
+  <img src="./doc/wx-pay.jpeg" width = "300" align=left />
+  
+
